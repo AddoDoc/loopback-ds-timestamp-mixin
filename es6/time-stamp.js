@@ -40,10 +40,14 @@ export default (Model, bootOptions = {}) => {
     if (ctx.instance) {
       debug('%s.%s before save: %s', ctx.Model.modelName, options.updatedAt, ctx.instance.id);
       ctx.instance[options.updatedAt] = new Date();
+      delete ctx.instance[options.createdAt]; //Make createdAt readonly
+
     } else {
       debug('%s.%s before update matching %j',
             ctx.Model.pluralModelName, options.updatedAt, ctx.where);
       ctx.data[options.updatedAt] = new Date();
+      delete ctx.data[options.createdAt]; //Make createdAt readonly
+
     }
     return next();
   });
