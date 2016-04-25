@@ -45,7 +45,7 @@ export default (Model, bootOptions = {}) => {
       debug('%s.%s before update matching %j',
             ctx.Model.pluralModelName, options.updatedAt, ctx.where);
       ctx.data[options.updatedAt] = new Date();
-      delete ctx.data[options.createdAt]; //Make createdAt readonly during update
+      //delete ctx.data[options.createdAt]; //Make createdAt readonly during update
 
     }
     return next();
